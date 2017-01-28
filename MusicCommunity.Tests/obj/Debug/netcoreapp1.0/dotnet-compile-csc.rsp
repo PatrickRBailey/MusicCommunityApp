@@ -186,5 +186,5 @@
 -r:"C:\Users\Patrick\.nuget\packages\xunit.runner.reporters\2.2.0-beta2-build3300\lib\netstandard1.1\xunit.runner.reporters.dotnet.dll"
 -r:"C:\Users\Patrick\.nuget\packages\xunit.runner.utility\2.2.0-beta2-build3300\lib\netstandard1.1\xunit.runner.utility.dotnet.dll"
 -r:"C:\Users\Patrick\Desktop\code\MusicCommunityApp\src\MusicCommunityApp\bin\Debug\netcoreapp1.0\MusicCommunityApp.dll"
-"C:\Users\Patrick\Desktop\code\MusicCommunityApp\MusicCommunity.Tests\Class1.cs"
+"C:\Users\Patrick\Desktop\code\MusicCommunityApp\MusicCommunity.Tests\NewsTests.cs"
 "C:\Users\Patrick\Desktop\code\MusicCommunityApp\MusicCommunity.Tests\Properties\AssemblyInfo.cs"

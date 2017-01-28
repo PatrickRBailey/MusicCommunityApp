@@ -1,7 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace CommunityWebsite.Controllers{
+namespace MusicCommunityApp.Controllers{
     public class MapController : Controller
     {
         public ViewResult Index()

@@ -1,6 +1,6 @@
 using System;
 
-namespace CommunityWebsite.Models{
+namespace MusicCommunityApp.Models{
     public class News {
         public string Title { get; set; }
         public DateTime Date { get; set; }

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace CommunityWebsite.Controllers{
+namespace MusicCommunityApp.Controllers{
     public class NewsController : Controller {
         public ViewResult Index()
         {

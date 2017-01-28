@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace CommunityWebsite.Controllers
+namespace MusicCommunityApp.Controllers
 {
     public class HomeController : Controller
     {
