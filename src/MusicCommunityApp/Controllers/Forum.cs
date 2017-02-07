@@ -10,6 +10,14 @@ namespace MusicCommunityApp.Controllers
         private IMember memberRepo;
         private Member user = new Member(){FirstName="Luke", LastName="Skywalker", Email="usetheforce@gmail.com"};
         private Message message = new Message() {Subject = "Hey", Body = "How are you doing today?"};
+        public ForumController(IMessage repo)
+        {
+            messageRepo = repo;
+        }
+        public ForumController(IMember repo)
+        {
+            memberRepo = repo;
+        }
         public ForumController(IMessage messRepo, IMember memRepo)
         {
             messageRepo = messRepo;

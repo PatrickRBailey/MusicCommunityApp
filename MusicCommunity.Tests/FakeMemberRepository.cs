@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using MusicCommunityApp.Models;
+using MusicCommunityApp.Repositories;
+
 
 namespace MusicCommunity.Tests
 {
