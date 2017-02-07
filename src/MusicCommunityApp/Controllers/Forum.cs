@@ -2,27 +2,22 @@ using Microsoft.AspNetCore.Mvc;
 using MusicCommunityApp.Repositories;
 using MusicCommunityApp.Models;
 
+//TODO: Change this controller to just hit the message repo 
+//TODO: Change the Controller methods to make more sense to fit a forum...ie CRUD stuff
+//TODO: Create a member Controller in order to test controller methods
+
 namespace MusicCommunityApp.Controllers
 {
     public class ForumController : Controller
     {
-        private IMessage messageRepo;
-        private IMember memberRepo;
+        private IMessage repository;
         private Member user = new Member(){FirstName="Luke", LastName="Skywalker", Email="usetheforce@gmail.com"};
         private Message message = new Message() {Subject = "Hey", Body = "How are you doing today?"};
         public ForumController(IMessage repo)
         {
-            messageRepo = repo;
+            repository = repo;
         }
-        public ForumController(IMember repo)
-        {
-            memberRepo = repo;
-        }
-        public ForumController(IMessage messRepo, IMember memRepo)
-        {
-            messageRepo = messRepo;
-            memberRepo = memRepo;
-        }
+
         public ViewResult Index()
         {
             return View();
