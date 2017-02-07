@@ -26,7 +26,7 @@ namespace MusicCommunity.Tests
             messages.Add(new Message() {Subject = "Hey Again", Body = "This is just a test"});
 
             var filteredMessages = new List<Message>();
-            foreach (var m in messages)
+            foreach (Message m in messages)
             {
               if (m.From == member)
               {
