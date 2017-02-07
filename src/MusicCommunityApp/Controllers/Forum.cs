@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using MusicCommunityApp.Repositories;
 using MusicCommunityApp.Models;
 
-//TODO: Change this controller to just hit the message repo 
 //TODO: Change the Controller methods to make more sense to fit a forum...ie CRUD stuff
 //TODO: Create a member Controller in order to test controller methods
 
