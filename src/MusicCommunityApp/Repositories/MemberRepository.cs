@@ -25,12 +25,8 @@ namespace MusicCommunityApp.Repositories
 
         public Member GetMemberByMessage(Message message)
         {
-            throw new NotImplementedException();
+          return message.From; 
         }
 
-        public Member GetMemberByName(string LastName, string FirstName)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

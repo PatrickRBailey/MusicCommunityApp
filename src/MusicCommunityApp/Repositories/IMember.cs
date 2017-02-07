@@ -8,7 +8,6 @@ namespace MusicCommunityApp.Repositories
 {
     public interface IMember
     {
-        Member GetMemberByName(string LastName, string FirstName);
         Member GetMemberByMessage(Message message);
         List<Member> GetAllMembers();
 
