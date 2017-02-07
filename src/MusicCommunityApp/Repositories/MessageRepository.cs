@@ -19,9 +19,8 @@ namespace MusicCommunityApp.Repositories
 
         public List<Message> GetMessagesForMember(Member member)
         {
-            var user = new Member(){FirstName="Luke", LastName="Skywalker", Email="usetheforce@gmail.com"};
             var messages = new List<Message>();
-            messages.Add(new Message() {Subject = "Hey", Body = "How are you doing today?", From = user});
+            messages.Add(new Message() {Subject = "Hey", Body = "How are you doing today?", From = member});
             messages.Add(new Message() {Subject = "Hey Again", Body = "This is just a test"});
 
             var filteredMessages = new List<Message>();

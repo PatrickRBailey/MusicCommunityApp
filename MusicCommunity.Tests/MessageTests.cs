@@ -36,7 +36,7 @@ namespace MusicCommunity.Tests
             List<Message> messages = controller.MyMessages().ViewData.Model as List<Message>;
 
             //Assert
-            Assert.Equal(repo.GetMessagesForMember(user)[0].From, messages[0].From);
+            Assert.Equal(repo.GetMessagesForMember(user)[0].From.FirstName, messages[0].From.FirstName);
         }
     }
 }
