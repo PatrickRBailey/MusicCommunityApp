@@ -22,6 +22,9 @@ namespace MusicCommunity.Tests
         {
             var messages = new List<Message>();
             messages.Add(new Message() {Subject = "Hey", Body = "How are you doing today?", From = member});
+            messages.Add(new Message() {Subject = "Test", Body = "Yo Yo Yo", From = member});
+            messages.Add(new Message() {Subject = "Foo", Body = "What's Happening?", From = member});
+            messages.Add(new Message() {Subject = "Bar", Body = "Oh Hey!!", From = member});
             messages.Add(new Message() {Subject = "Hey Again", Body = "This is just a test"});
 
             var filteredMessages = new List<Message>();

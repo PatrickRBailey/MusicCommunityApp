@@ -12,7 +12,7 @@ namespace MusicCommunity.Tests
         {
         //Arrange
         FakeMemberRepository repository = new FakeMemberRepository();
-        ForumController controller = new ForumController(repository);
+        MemberController controller = new MemberController(repository);
         
         //Act
         List<Member> members = controller.AllMembers().ViewData.Model as List<Member>;
@@ -24,20 +24,18 @@ namespace MusicCommunity.Tests
         Assert.Equal(repository.GetAllMembers()[1].LastName, members[1].LastName);
         }
         [Fact]
-        public void GetMemberByMessage()
+        public void CreateMember()
         {
             //Arrange
             FakeMemberRepository repo = new FakeMemberRepository();
-            ForumController controller = new ForumController(repo);
+            MemberController controller = new MemberController(repo);
 
             //Act
-            Member member = controller.Member().ViewData.Model as Member;
-            Member user = new Member(){FirstName="Luke", LastName="Skywalker", Email="usetheforce@gmail.com"};
-            Message message = new Message() {Subject = "Hey", Body = "How are you doing today?"};
-            message.From = user;
+            Member member = controller.CreateNewMember().ViewData.Model as Member;
+            Member newMember = repo.CreateNewMember("Luke" ,"Skywalker" ,"Skywalkersound@gmail.com");
 
             //Assert
-            Assert.Equal(repo.GetMemberByMessage(message).FirstName, member.FirstName);
+            Assert.Equal(newMember.FirstName, member.FirstName);
         }
     }
 }

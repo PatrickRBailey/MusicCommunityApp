@@ -7,6 +7,10 @@ namespace MusicCommunity.Tests
 {
     public class FakeMemberRepository : IMember
     {
+         public Member CreateNewMember(string firstName, string lastName, string email)
+        {
+            return new Member(){FirstName=firstName, LastName=lastName, Email=email};
+        }
         public List<Member> GetAllMembers()
         {
             var members = new List<Member>();
@@ -22,10 +26,7 @@ namespace MusicCommunity.Tests
             return members;
         }
 
-        public Member GetMemberByMessage(Message message)
-        {
-          return message.From; 
-        }
+
 
     }
 }
