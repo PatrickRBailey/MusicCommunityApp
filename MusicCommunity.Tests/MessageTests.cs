@@ -14,7 +14,7 @@ namespace MusicCommunity.Tests
             FakeMessageRepository repo = new FakeMessageRepository();
             ForumController controller = new ForumController(repo);
 
-            //Act
+            //Act 
             List<Message> messages = controller.AllMessages().ViewData.Model as List<Message>;
 
             //Assert
@@ -25,18 +25,23 @@ namespace MusicCommunity.Tests
         }
 
         [Fact]
-        public void GetMessageByMember()
+        public void GetMessagesByMember()
         {
             //Arrange
-            FakeMessageRepository repo = new FakeMessageRepository();
-            ForumController controller = new ForumController(repo);
-            Member user = new Member(){FirstName="Luke", LastName="Skywalker", Email="usetheforce@gmail.com"};
+            FakeMessageRepository messageRepo = new FakeMessageRepository();
+            ForumController controller = new ForumController(messageRepo);
+
+            FakeMemberRepository memberRepo = new FakeMemberRepository();
+            MemberController controller2 = new MemberController(memberRepo);
+            
 
             //Act
             List<Message> messages = controller.MyMessages().ViewData.Model as List<Message>;
+            List<Member> members = controller2.AllMembers().ViewData.Model as List<Member>;
+            Member user = members[0];
 
             //Assert
-            Assert.Equal(repo.GetMessagesForMember(user)[0].From.FirstName, messages[0].From.FirstName);
+            Assert.Equal(messageRepo.GetMessagesForMember(user)[0].From.Email, messages[0].From.Email);
         }
     }
 }

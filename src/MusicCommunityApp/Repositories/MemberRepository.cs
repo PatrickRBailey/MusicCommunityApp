@@ -18,12 +18,7 @@ namespace MusicCommunityApp.Repositories
             var members = new List<Member>();
             members.Add(new Member() { FirstName = "Patrick", LastName = "Bailey",
                 Email = "patrickb@blahblah.org" });
-            members.Add(new Member()
-            {
-                FirstName = "Gob",
-                LastName = "Bluth",
-                Email = "gbluth@blahblah.org"
-            });
+            members.Add(new Member(){FirstName = "Gob",LastName = "Bluth",Email = "gbluth@blahblah.org"});
 
             return members;
         }

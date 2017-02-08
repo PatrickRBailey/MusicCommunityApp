@@ -1,0 +1,14 @@
+@model List<MusicCommunityApp.Models.Message>
+@{
+    ViewBag.Title = "My Messages";
+}
+
+<h1>List of My Messages</h1>
+        @foreach (var m in Model)
+        {
+            @: Subject: @m.Subject <br>
+            @: Body: @m.Body <br><br>
+            @: Date: @m.Date <br><br>
+            @: From: @m.From.FirstName @m.From.LastName <br><br>
+            @: Event: @m.Event <br> <br>
+        }

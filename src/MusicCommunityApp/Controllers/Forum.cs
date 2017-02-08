@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MusicCommunityApp.Repositories;
 using MusicCommunityApp.Models;
-
+using System.Collections.Generic;
 
 namespace MusicCommunityApp.Controllers
 {
@@ -28,7 +28,11 @@ namespace MusicCommunityApp.Controllers
 
         public ViewResult MyMessages()
         {
-            Member user = new Member(){FirstName="Luke", LastName="Skywalker", Email="usetheforce@gmail.com"};
+            MemberRepository memberRepo = new MemberRepository();
+            MemberController controller = new MemberController(memberRepo);
+            List<Member> members = controller.AllMembers().ViewData.Model as List<Member>;
+
+            Member user = members[0];
             var repo = new MessageRepository();
             var messages = repo.GetMessagesForMember(user);
             return View(messages);
