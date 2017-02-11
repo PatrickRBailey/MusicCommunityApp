@@ -8,8 +8,8 @@ namespace MusicCommunityApp.Repositories
 {
     public interface IMessage
     {
-        List<Message> GetMessagesForMember(Member member);
-        List<Message> GetAllMessages();
+        IEnumerable<Message> GetMessagesForMember(Member member);
+        IEnumerable<Message> GetAllMessages();
 
     }
 }

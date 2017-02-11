@@ -9,33 +9,23 @@ namespace MusicCommunityApp.Repositories
 {
     public class MessageRepository : IMessage
     {
-        private Member user1 = new Member(){FirstName = "Gob",LastName = "Bluth",Email = "gbluth@blahblah.org"};
-        private Member user2 = new Member() { FirstName = "Patrick", LastName = "Bailey",Email = "patrickb@blahblah.org" };
-
-        public List<Message> GetAllMessages()
+        private ApplicationDbContext context;
+        public MessageRepository(ApplicationDbContext ctx)
         {
-            var messages = new List<Message>();
-            messages.Add(new Message() {Subject = "Hey", Body = "How are you doing today?", From = user1, Date= DateTime.Now, Event="Check this out"});
-            messages.Add(new Message() {Subject = "Test", Body = "Yo Yo Yo", From = user1, Date= new DateTime(2017,1,23,5,30,00),Event="A new Event"});
-            messages.Add(new Message() {Subject = "Foo", Body = "What's Happening?", From = user2, Date= new DateTime(2017,2,23,2,20,00),Event="A second Event"});
-            messages.Add(new Message() {Subject = "Bar", Body = "Oh Hey!!", From = user2,Date= new DateTime(2017,5,13,5,30,00),Event="Another Event"});
-            messages.Add(new Message() {Subject = "Hey Again", Body = "This is just a test", From= user1, Date= new DateTime(2017,3,5,12,30,00),Event="A final Event"});
-            return messages;
+            context = ctx;
         }
 
-        public List<Message> GetMessagesForMember(Member member)
+        public IEnumerable<Message> GetAllMessages()
         {
-            var messages = new List<Message>();
-            messages.Add(new Message() {Subject = "Hey", Body = "How are you doing today?", From = user1, Date= DateTime.Now, Event="Check this out"});
-            messages.Add(new Message() {Subject = "Test", Body = "Yo Yo Yo", From = user1, Date= new DateTime(2017,1,23,5,30,00),Event="A new Event"});
-            messages.Add(new Message() {Subject = "Foo", Body = "What's Happening?", From = user2, Date= new DateTime(2017,2,23,2,20,00),Event="A second Event"});
-            messages.Add(new Message() {Subject = "Bar", Body = "Oh Hey!!", From = user2,Date= new DateTime(2017,5,13,5,30,00),Event="Another Event"});
-            messages.Add(new Message() {Subject = "Hey Again", Body = "This is just a test", From= user1, Date= new DateTime(2017,3,5,12,30,00),Event="A final Event"});
+            return context.Messages;
+        }
 
+        public IEnumerable<Message> GetMessagesForMember(Member member)
+        {
             var filteredMessages = new List<Message>();
-            foreach (Message m in messages)
+            foreach (Message m in context.Messages)
             {
-              if (m.From.Email == member.Email)
+              if (m.From.MemberID == member.MemberID)
               {
                 filteredMessages.Add(m);
               }
