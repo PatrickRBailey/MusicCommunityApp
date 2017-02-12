@@ -10,13 +10,14 @@ namespace MusicCommunityApp.Repositories{
         {
             ApplicationDbContext context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
 
-            if (context.Messages.Any())
+            if (!context.Messages.Any())
             {
                 Member member = new Member {FirstName="Johnny", LastName="Rocket"};
                 context.Members.Add(member);
-                Message message = new Message {Subject = "Greetings", Body="Hello and welcome to this group", From = member};
+                Message message = new Message {Subject = "Greetings", Body="Hello and welcome to this group"};
+                message.From = member;
                 context.Messages.Add(message);
-                message = new Message {Subject = "Introduction", Body="Hello, my name is Johnny and I'm looking for a place to jame", From = member};
+                message = new Message {Subject = "Introduction", Body="Hello, my name is Johnny and I'm looking for a place to jam", From = member};
                 context.Messages.Add(message);
 
                 member = new Member {FirstName="Bob", LastName="Loblaw"};
@@ -27,6 +28,7 @@ namespace MusicCommunityApp.Repositories{
                 context.Messages.Add(message);
 
                 context.SaveChanges();
+                
             }
         }
     }

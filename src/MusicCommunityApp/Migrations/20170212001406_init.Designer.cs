@@ -8,8 +8,8 @@ using MusicCommunityApp.Repositories;
 namespace MusicCommunityApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170211212344_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20170212001406_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

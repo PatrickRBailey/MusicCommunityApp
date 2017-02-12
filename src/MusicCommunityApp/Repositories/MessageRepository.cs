@@ -17,7 +17,7 @@ namespace MusicCommunityApp.Repositories
 
         public IEnumerable<Message> GetAllMessages()
         {
-            return context.Messages;
+            return context.Messages.ToList();
         }
 
         public IEnumerable<Message> GetMessagesForMember(Member member)

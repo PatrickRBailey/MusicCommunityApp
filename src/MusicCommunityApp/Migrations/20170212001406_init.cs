@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MusicCommunityApp.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,7 +32,7 @@ namespace MusicCommunityApp.Migrations
                     Body = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     Event = table.Column<string>(nullable: true),
-                    FromMemberID = table.Column<int>(nullable: true),
+                    FromMemberID = table.Column<int>(nullable: false),
                     Subject = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
