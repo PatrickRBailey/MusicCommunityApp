@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MusicCommunityApp.Models;
 
 
@@ -17,7 +18,7 @@ namespace MusicCommunityApp.Repositories
 
         public IEnumerable<Message> GetAllMessages()
         {
-            return context.Messages.ToList();
+            return context.Messages.Include(m => m.From).ToList();
         }
 
         public IEnumerable<Message> GetMessagesForMember(Member member)
