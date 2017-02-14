@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MusicCommunityApp.Repositories;
 using MusicCommunityApp.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MusicCommunityApp.Controllers
 {
@@ -16,26 +17,17 @@ namespace MusicCommunityApp.Controllers
 
         public ViewResult Index()
         {
-            return View();
+            return View(repository.GetAllMessages().ToList());
         }
 
         public ViewResult AllMessages()
         {
-            var repo = new MessageRepository();
-            var messages = repo.GetAllMessages();
-            return View(messages);
+            return View(repository.GetAllMessages().ToList());
         }
 
-        public ViewResult MyMessages()
+        public ViewResult MyMessages(Member me)
         {
-            MemberRepository memberRepo = new MemberRepository();
-            MemberController controller = new MemberController(memberRepo);
-            List<Member> members = controller.AllMembers().ViewData.Model as List<Member>;
-
-            Member user = members[0];
-            var repo = new MessageRepository();
-            var messages = repo.GetMessagesForMember(user);
-            return View(messages);
+            return View(repository.GetMessagesForMember(me));
         }
 
        

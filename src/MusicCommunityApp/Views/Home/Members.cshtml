@@ -1,0 +1,11 @@
+@model IEnumerable<MusicCommunityApp.Models.Member>
+
+@{
+    ViewBag.Title = "Members";
+}
+<h1>Members</h1>
+@foreach (var m in Model)
+{
+    @: First Name: @m.FirstName <br>
+    @: Last Name: @m.LastName <br><br>
+}
