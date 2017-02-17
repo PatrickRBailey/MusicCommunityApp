@@ -27,9 +27,7 @@ namespace MusicCommunityApp.Controllers
 
         public ViewResult MyMessages(Member me)
         {
-            return View("Index", repository.GetAllMessages().
-                Where(m => m.From == me).ToList());
-            //return View(repository.GetMessagesForMember(me));
+            return View(repository.GetMessagesForMember(me));
         }
         public ViewResult MessagesByName(string Fname, string LName)
         {
