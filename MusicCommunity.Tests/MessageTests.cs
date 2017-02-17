@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using MusicCommunityApp.Models;
 using MusicCommunityApp.Controllers;
+using System.Linq;
 using Xunit;
 
 namespace MusicCommunity.Tests
 {
     public class MessageTests
     {
+        List<Message> repoList;
         [Fact]
         public void GetAllMessages()
         {
@@ -16,12 +18,13 @@ namespace MusicCommunity.Tests
 
             //Act 
             List<Message> messages = controller.AllMessages().ViewData.Model as List<Message>;
+            repoList = repo.GetAllMessages().ToList();
 
             //Assert
-            Assert.Equal(repo.GetAllMessages()[0].Subject, messages[0].Subject);
-            Assert.Equal(repo.GetAllMessages()[0].Body, messages[0].Body);
-            Assert.Equal(repo.GetAllMessages()[1].Subject, messages[1].Subject);
-            Assert.Equal(repo.GetAllMessages()[1].Body, messages[1].Body);
+            Assert.Equal(repoList[0].Subject, messages[0].Subject);
+            Assert.Equal(repoList[0].Body, messages[0].Body);
+            Assert.Equal(repoList[1].Subject, messages[1].Subject);
+            Assert.Equal(repoList[1].Body, messages[1].Body);
         }
 
         [Fact]
@@ -30,18 +33,21 @@ namespace MusicCommunity.Tests
             //Arrange
             FakeMessageRepository messageRepo = new FakeMessageRepository();
             ForumController controller = new ForumController(messageRepo);
+            
 
             FakeMemberRepository memberRepo = new FakeMemberRepository();
-            MemberController controller2 = new MemberController(memberRepo);
+            HomeController controller2 = new HomeController(memberRepo);
             
 
             //Act
-            List<Message> messages = controller.MyMessages().ViewData.Model as List<Message>;
-            List<Member> members = controller2.AllMembers().ViewData.Model as List<Member>;
+            List<Member> members = controller2.Members().ViewData.Model as List<Member>;
             Member user = members[0];
+            List<Message> messages = controller.MyMessages(user).ViewData.Model as List<Message>;
+            repoList = messageRepo.GetMessagesForMember(user).ToList();
+            
 
             //Assert
-            Assert.Equal(messageRepo.GetMessagesForMember(user)[0].From.Email, messages[0].From.Email);
+            Assert.Equal(repoList[0].From.Email, messages[0].From.Email);
         }
     }
 }

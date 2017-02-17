@@ -12,7 +12,7 @@ namespace MusicCommunity.Tests
     {
         private Member user1 = new Member(){FirstName = "Gob",LastName = "Bluth",Email = "gbluth@blahblah.org"};
         private Member user2 = new Member() { FirstName = "Patrick", LastName = "Bailey",Email = "patrickb@blahblah.org" };
-        public List<Message> GetAllMessages()
+        public IEnumerable<Message> GetAllMessages()
         {
             var messages = new List<Message>();
             messages.Add(new Message() {Subject = "Hey", Body = "How are you doing today?", From = user1, Date= DateTime.Now, Event="Check this out"});
@@ -23,7 +23,7 @@ namespace MusicCommunity.Tests
             return messages;
         }
 
-        public List<Message> GetMessagesForMember(Member member)
+        public IEnumerable<Message> GetMessagesForMember(Member member)
         {
             var messages = new List<Message>();
             messages.Add(new Message() {Subject = "Hey", Body = "How are you doing today?", From = user1, Date= DateTime.Now, Event="Check this out"});
