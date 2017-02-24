@@ -29,6 +29,17 @@ namespace MusicCommunityApp.Controllers
         {
             return View(repository.GetMessagesForMember(me));
         }
+        public ViewResult MessagesByName(string Fname, string LName)
+        {
+            return View("Index", repository.GetAllMessages().
+                Where(m => m.From.FirstName == Fname && m.From.LastName == LName).ToList());
+        }
+
+        public ViewResult MessagesBySubject(string subject)
+        {
+            return View("Index", repository.GetAllMessages().
+                Where(m => m.Subject == subject).ToList());
+        }
 
        
 

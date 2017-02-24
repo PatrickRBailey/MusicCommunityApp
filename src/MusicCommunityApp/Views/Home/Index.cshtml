@@ -1,9 +1,13 @@
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home";
 }
 <h2>Today's date is: @ViewBag.Date</h2>
 <p>This is the Index Page</p>
 <h1>Message Information</h1>
 @Html.ActionLink("Show all messages", "Index", "Forum")<br />
-@Html.ActionLink("Show all members", "Members", "Home")
+@Html.ActionLink("Show all members", "Members", "Home") <br>
+@Html.ActionLink("Show Bob's' Messages", "MessagesByName", "Forum", new { FName = "Bob", LName = "Loblaw" } )<br>
+@Html.ActionLink("Show Johnny's' Messages", "MessagesByName", "Forum", new { FName = "Johnny", LName = "Rocket" } )<br>
+@Html.ActionLink("Show Greetings Messages", "MessagesBySubject", "Forum", new { subject = "Greetings" } )<br>
+@Html.ActionLink("Show Introduction Messages", "MessagesBySubject", "Forum", new { subject = "Introduction" } )<br>
