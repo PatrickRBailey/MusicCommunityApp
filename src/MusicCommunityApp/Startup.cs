@@ -21,18 +21,19 @@ namespace MusicCommunityApp
             .SetBasePath(env.ContentRootPath)
             .AddJsonFile("appsettings.json").Build();
         }
-        
+
 
 
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(opts =>
+                opts.UseSqlServer(
+                    Configuration["Data:MusicCommunity:ConnectionString"]));
             // Add framework services.
             services.AddMvc();
 
-            var connectionString = Configuration["DbContextSettings:ConnectionString"];
-            services.AddDbContext<ApplicationDbContext>(opts => opts.UseNpgsql(connectionString));
             services.AddTransient<IMessage, MessageRepository>();
             services.AddTransient<IMember, MemberRepository>();
         }
