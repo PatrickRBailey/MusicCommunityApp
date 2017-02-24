@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace MusicCommunityApp.Migrations
 {
-    public partial class init : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +14,7 @@ namespace MusicCommunityApp.Migrations
                 columns: table => new
                 {
                     MemberID = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Email = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true)
@@ -28,11 +29,11 @@ namespace MusicCommunityApp.Migrations
                 columns: table => new
                 {
                     MessageID = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Body = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     Event = table.Column<string>(nullable: true),
-                    FromMemberID = table.Column<int>(nullable: false),
+                    FromMemberID = table.Column<int>(nullable: true),
                     Subject = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
