@@ -8,13 +8,14 @@ using MusicCommunityApp.Repositories;
 namespace MusicCommunityApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170212001406_init")]
-    partial class init
+    [Migration("20170224031007_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
+                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("MusicCommunityApp.Models.Member", b =>
                 {
