@@ -16,9 +16,9 @@ namespace MusicCommunityApp.Repositories
             context = ctx;
         }
 
-        public IEnumerable<Message> GetAllMessages()
+        public IQueryable<Message> GetAllMessages()
         {
-            return context.Messages.Include(m => m.From).ToList();
+            return context.Messages.Include(m => m.From).Include(m => m.Comments);
         }
 
         public IEnumerable<Message> GetMessagesForMember(Member member)

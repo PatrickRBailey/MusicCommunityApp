@@ -22,6 +22,9 @@
                     <p class="postInfo pull-right">
                         @m.From.FirstName @m.From.LastName <i>@m.Date.ToString("d")</i>
                     </p>
+                    <a href="@Url.Action("CommentForm", "Forum",new {id=m.MessageID})" class="btn btn-success center-block" style="margin-top:30px;">
+                        Comment
+                    </a>
                 </div>
 
             }
