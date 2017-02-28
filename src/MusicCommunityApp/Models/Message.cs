@@ -13,5 +13,7 @@ namespace MusicCommunityApp.Models
         public DateTime Date { get; set; }
         public Member From { get; set; }
         public string EventName { get; set; }
+        private List<Comment> comments = new List<Comment>();
+        public List <Comment> Comments { get { return comments; } }
     }
 }

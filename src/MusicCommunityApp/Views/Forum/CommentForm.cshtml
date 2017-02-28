@@ -1,0 +1,14 @@
+﻿﻿@model MusicCommunityApp.Models.CommentViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewBag.Title = "Comment";
+}
+<form asp-controller="Forum" asp-action="CommentForm" method="post">
+    <input asp-for="MessageID" type="hidden" />
+
+    <label asp-for="Comment.Body"></label>
+    <input asp-for="Comment.Body" />
+
+    <button type="submit">Post</button>
+</form>
