@@ -4,18 +4,29 @@
 @{
     ViewBag.Title = "Message";
 }
-<h1>Create a New Message</h1>
+
+<h1 class="text-center">Create a New Message</h1>
 <form asp-controller="Forum" asp-action="NewMessageForm" method="post">
-    <input asp-for="MessageID" type="hidden" />
+    <div class="form-group center-block" id="new_message_form">
+        <input asp-for="MessageID" type="hidden" />
 
-    <label asp-for="Subject"></label>
-    <input asp-for="Subject" />
+        <label asp-for="Subject">Subject:</label>
+        <input asp-for="Subject" class="form-control" /><br />
 
-    <label asp-for="Body"></label>
-    <input asp-for="Body" />
+        <label asp-for="EventName">Event:</label>
+        <input asp-for="EventName" class="form-control" /><br />
 
-    <label asp-for="EventName"></label>
-    <input asp-for="EventName" />
+        <label asp-for="Body">Body:</label>
+        <textarea asp-for="Body" class="form-control"></textarea><br />
 
-    <button type="submit">Post</button>
+
+
+
+        <button type="submit" class="btn btn-primary pull-right">Post</button>
+    </div>
 </form>
+
+
+
+
+
