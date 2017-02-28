@@ -35,7 +35,7 @@ namespace MusicCommunityApp.Repositories
         }
         public int Update (Message message)
         {
-            if (message.MessageID < 0)
+            if (message.MessageID == 0)
                 context.Messages.Add(message);
             else
                 context.Messages.Update(message);
