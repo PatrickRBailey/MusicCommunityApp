@@ -70,19 +70,20 @@ namespace MusicCommunityApp.Controllers
             var commentVm = new CommentViewModel();
             commentVm.MessageID = id;
             commentVm.Comment = new Models.Comment();
+            
 
             return View(commentVm);
         }
 
         [HttpPost]
-        public IActionResult CommentForm(int id, string body)
+        public IActionResult CommentForm(CommentViewModel commentVm)
         {
+
             Message message = (from m in repository.GetAllMessages()
-                         where m.MessageID == id
+                         where m.MessageID == commentVm.MessageID
                          select m).FirstOrDefault<Message>();
 
-            // add the review and save the book object to the db
-            message.Comments.Add(new Comment { Body = body });
+            message.Comments.Add(commentVm.Comment);
             repository.Update(message);
 
             return RedirectToAction("AllMessages", "Forum");

@@ -22,7 +22,20 @@
                     <p class="postInfo pull-right">
                         @m.From.FirstName @m.From.LastName <i>@m.Date.ToString("d")</i>
                     </p>
+                    <a href="@Url.Action("CommentForm", "Forum",new {id=m.MessageID})" class="btn btn-primary pull-left" style="margin-top:30px;">
+                        Comment
+                    </a>
                 </div>
+
+                @foreach (var c in m.Comments)
+                {
+                    <div class="comments center-block">
+                        <p class="comment_text">@c.Body</p>
+                    </div>
+                }
+                
+               
+
 
             }
         </div>

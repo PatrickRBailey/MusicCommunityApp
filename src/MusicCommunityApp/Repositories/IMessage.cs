@@ -9,7 +9,7 @@ namespace MusicCommunityApp.Repositories
     public interface IMessage
     {
         IEnumerable<Message> GetMessagesForMember(Member member);
-        IEnumerable<Message> GetAllMessages();
+        IQueryable<Message> GetAllMessages();
         int Update(Message message);
 
     }

@@ -8,14 +8,30 @@ using MusicCommunityApp.Repositories;
 namespace MusicCommunityApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170228064008_EventName")]
-    partial class EventName
+    [Migration("20170228212912_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("MusicCommunityApp.Models.Comment", b =>
+                {
+                    b.Property<int>("CommentID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Body");
+
+                    b.Property<int?>("MessageID");
+
+                    b.HasKey("CommentID");
+
+                    b.HasIndex("MessageID");
+
+                    b.ToTable("Comment");
+                });
 
             modelBuilder.Entity("MusicCommunityApp.Models.Member", b =>
                 {
@@ -53,6 +69,13 @@ namespace MusicCommunityApp.Migrations
                     b.HasIndex("FromMemberID");
 
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("MusicCommunityApp.Models.Comment", b =>
+                {
+                    b.HasOne("MusicCommunityApp.Models.Message")
+                        .WithMany("Comments")
+                        .HasForeignKey("MessageID");
                 });
 
             modelBuilder.Entity("MusicCommunityApp.Models.Message", b =>
