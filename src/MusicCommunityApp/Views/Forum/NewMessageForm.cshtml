@@ -1,0 +1,21 @@
+﻿﻿@model MusicCommunityApp.Models.Message
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewBag.Title = "Message";
+}
+<h1>Create a New Message</h1>
+<form asp-controller="Forum" asp-action="NewMessageForm" method="post">
+    <input asp-for="MessageID" type="hidden" />
+
+    <label asp-for="Subject"></label>
+    <input asp-for="Subject" />
+
+    <label asp-for="Body"></label>
+    <input asp-for="Body" />
+
+    <label asp-for="EventName"></label>
+    <input asp-for="EventName" />
+
+    <button type="submit">Post</button>
+</form>

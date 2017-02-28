@@ -6,6 +6,47 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>@ViewBag.Title </title>
+
+    <style>
+        #postInput {
+            width: 100%;
+            font-size: 1em;
+            display: inline;
+            border: none;
+            overflow: auto;
+            outline: none;
+            resize: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+
+        #postDiv {
+            background-color: #fff;
+            margin-top: 20px;
+            border: solid #d7ccc8 .5px;
+        }
+
+
+        #postBtn {
+            margin-bottom: 10px;
+            width: 75px;
+        }
+
+        .messages {
+            width: 100%;
+            background-color: #fff;
+            position: relative;
+            float: left;
+            border: solid #d7ccc8 .5px;
+            padding: 10px;
+        }
+
+        #subjectInput {
+            margin: 20px;
+            width: 30%;
+        }
+    </style>
 </head>
 <body>
     <ul class="nav nav-tabs">

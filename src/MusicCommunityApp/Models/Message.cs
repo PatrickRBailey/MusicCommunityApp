@@ -12,6 +12,6 @@ namespace MusicCommunityApp.Models
         public string Body { get; set; }
         public DateTime Date { get; set; }
         public Member From { get; set; }
-        public string Event { get; set; }
+        public string EventName { get; set; }
     }
 }

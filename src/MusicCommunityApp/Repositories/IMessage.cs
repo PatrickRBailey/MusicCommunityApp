@@ -10,6 +10,7 @@ namespace MusicCommunityApp.Repositories
     {
         IEnumerable<Message> GetMessagesForMember(Member member);
         IEnumerable<Message> GetAllMessages();
+        int Update(Message message);
 
     }
 }

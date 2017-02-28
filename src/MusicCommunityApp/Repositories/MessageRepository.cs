@@ -33,5 +33,11 @@ namespace MusicCommunityApp.Repositories
             }
             return filteredMessages;
         }
+        public int Update (Message message)
+        {
+            context.Messages.Add(message);
+            return context.SaveChanges();
+
+        }
     }
 }
