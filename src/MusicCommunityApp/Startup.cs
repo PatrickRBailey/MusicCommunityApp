@@ -19,7 +19,10 @@ namespace MusicCommunityApp
         {
             Configuration = new ConfigurationBuilder()
             .SetBasePath(env.ContentRootPath)
-            .AddJsonFile("appsettings.json").Build();
+            //.AddJsonFile("appsettings.json")
+            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
+            .Build();
+
         }
 
 
