@@ -7,17 +7,25 @@
 
 <h1 class="text-center">Create a New Message</h1>
 <form asp-controller="Forum" asp-action="NewMessageForm" method="post">
+    
     <div class="form-group center-block" id="new_message_form">
+        <div asp-validation-summary="All" class="text-danger"></div>
         <input asp-for="MessageID" type="hidden" />
 
         <label asp-for="Subject">Subject:</label>
-        <input asp-for="Subject" class="form-control" /><br />
+        <input asp-for="Subject" class="form-control" />
+        <span asp-validation-for="Subject" class="text-danger"></span>
+        <br />
 
         <label asp-for="EventName">Event:</label>
-        <input asp-for="EventName" class="form-control" /><br />
+        <input asp-for="EventName" class="form-control" />
+        <span asp-validation-for="EventName" class="text-danger"></span>
+        <br />
 
         <label asp-for="Body">Body:</label>
-        <textarea asp-for="Body" class="form-control"></textarea><br />
+        <textarea asp-for="Body" class="form-control"></textarea>
+        <span asp-validation-for="Body" class="text-danger"></span>
+        <br />
 
 
 

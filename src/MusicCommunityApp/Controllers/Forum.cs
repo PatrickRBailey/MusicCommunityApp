@@ -51,17 +51,22 @@ namespace MusicCommunityApp.Controllers
         [HttpPost]
         public IActionResult NewMessageForm(int id, string subject, string body, string eventName)
         {
-            var member = new Member { FirstName = "Jack", LastName = "Johnson" };
-            var message = new Message();
-            message.MessageID = id;
-            message.Subject = subject;
-            message.Body = body;
-            message.Date = DateTime.Now;
-            message.EventName = eventName;
-            message.From = member;
-            repository.Update(message);
+            if (ModelState.IsValid)
+            {
+                var member = new Member { FirstName = "Jack", LastName = "Johnson" };
+                var message = new Message();
+                message.MessageID = id;
+                message.Subject = subject;
+                message.Body = body;
+                message.Date = DateTime.Now;
+                message.EventName = eventName;
+                message.From = member;
+                repository.Update(message);
 
-            return RedirectToAction("AllMessages", "Forum");
+                return RedirectToAction("AllMessages", "Forum");
+            }
+            else
+                return View();
         }
 
         [HttpGet]
