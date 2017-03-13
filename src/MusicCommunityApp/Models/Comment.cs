@@ -9,6 +9,7 @@ namespace MusicCommunityApp.Models
     public class Comment
     {
         public int CommentID { get; set; }
+        [Required(ErrorMessage = "You can't submit a blank comment")]
         public string Body { get; set; }
 
     }
