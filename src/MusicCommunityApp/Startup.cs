@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MusicCommunityApp.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MusicCommunityApp
 {
@@ -34,6 +35,12 @@ namespace MusicCommunityApp
             services.AddDbContext<ApplicationDbContext>(opts =>
                 opts.UseSqlServer(
                     Configuration["Data:MusicCommunity:ConnectionString"]));
+
+            services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(
+                Configuration["Data:MusicIdentity:ConnectionString"]));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>();
             // Add framework services.
             services.AddMvc();
 
@@ -50,8 +57,11 @@ namespace MusicCommunityApp
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
+            app.UseIdentity();
             app.UseMvcWithDefaultRoute();
             SeedData.EnsurePopulated(app);
+            //IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

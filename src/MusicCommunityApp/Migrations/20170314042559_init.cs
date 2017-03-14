@@ -30,11 +30,11 @@ namespace MusicCommunityApp.Migrations
                 {
                     MessageID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Body = table.Column<string>(nullable: true),
+                    Body = table.Column<string>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
-                    EventName = table.Column<string>(nullable: true),
+                    EventName = table.Column<string>(nullable: false),
                     FromMemberID = table.Column<int>(nullable: true),
-                    Subject = table.Column<string>(nullable: true)
+                    Subject = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,7 +53,7 @@ namespace MusicCommunityApp.Migrations
                 {
                     CommentID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Body = table.Column<string>(nullable: true),
+                    Body = table.Column<string>(nullable: false),
                     MessageID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

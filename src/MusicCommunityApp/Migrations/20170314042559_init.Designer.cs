@@ -8,7 +8,7 @@ using MusicCommunityApp.Repositories;
 namespace MusicCommunityApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170228212912_init")]
+    [Migration("20170314042559_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,7 +22,8 @@ namespace MusicCommunityApp.Migrations
                     b.Property<int>("CommentID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Body");
+                    b.Property<string>("Body")
+                        .IsRequired();
 
                     b.Property<int?>("MessageID");
 
@@ -54,15 +55,19 @@ namespace MusicCommunityApp.Migrations
                     b.Property<int>("MessageID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Body");
+                    b.Property<string>("Body")
+                        .IsRequired();
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<string>("EventName");
+                    b.Property<string>("EventName")
+                        .IsRequired();
 
                     b.Property<int?>("FromMemberID");
 
-                    b.Property<string>("Subject");
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
 
                     b.HasKey("MessageID");
 
