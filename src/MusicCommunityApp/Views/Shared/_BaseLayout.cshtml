@@ -78,6 +78,7 @@
         <li role="presentation" class="@(ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "")">@Html.ActionLink("About", "About", "Home")</li>
         <li role="presentation" class="@(ViewContext.RouteData.Values["Action"].ToString() == "History" ? "active" : "")">@Html.ActionLink("History", "History", "Home")</li>
         <li role="presentation" class="@(ViewContext.RouteData.Values["Action"].ToString() == "AllMessages" ? "active" : "")">@Html.ActionLink("Forum", "AllMessages", "Forum")</li>
+        <li role="presentation">@Html.ActionLink("Logout", "Logout", "Account")</li>
     </ul>
     <div>
         @RenderBody()

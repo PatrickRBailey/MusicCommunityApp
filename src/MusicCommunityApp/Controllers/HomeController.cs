@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using MusicCommunityApp.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MusicCommunityApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private IMember repository;
+        
         public HomeController(IMember repo)
         {
             repository = repo;
