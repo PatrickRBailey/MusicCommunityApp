@@ -17,7 +17,7 @@ namespace MusicCommunityApp.Models
         [Required(ErrorMessage = "Please Enter Text in the Body")]
         public string Body { get; set; }
         public DateTime Date { get; set; }
-        public Member From { get; set; }
+        public Musician From { get; set; }
 
         [Required(ErrorMessage = "An Event can't have numbers")]
         [RegularExpression("^[a-z A-Z /s]*$")]

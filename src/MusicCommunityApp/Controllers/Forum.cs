@@ -32,7 +32,7 @@ namespace MusicCommunityApp.Controllers
                 return View(repository.GetAllMessages().ToList());
         }
 
-        public ViewResult MyMessages(Musician me)
+        public ViewResult MyMessages(Member me)
         {
             return View(repository.GetMessagesForMember(me));
         }
@@ -52,24 +52,24 @@ namespace MusicCommunityApp.Controllers
         [Authorize]
         public ViewResult NewMessageForm()
         {
-            
-            return View();
+            var message = new Models.Message();
+            return View(message);
         }
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> NewMessageForm(int id, string subject, string body, string eventName)
+        public async Task<IActionResult> NewMessageForm(Message m)
         {
             if (ModelState.IsValid)
             {
                 var message = new Message();
-                message.MessageID = id;
-                message.Subject = subject;
-                message.Body = body;
+                message.MessageID = m.MessageID;
+                message.Subject = m.Subject;
+                message.Body = m.Body;
                 message.Date = DateTime.Now;
-                message.EventName = eventName;
+                message.EventName = m.EventName;
 
                 string name = HttpContext.User.Identity.Name;
-                //message.From = await userManager.FindByNameAsync(name);
+                message.From = await userManager.FindByNameAsync(name);
                 repository.Update(message);
 
                 return RedirectToAction("AllMessages", "Forum");

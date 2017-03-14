@@ -61,7 +61,7 @@ namespace MusicCommunityApp
             app.UseStaticFiles();
             app.UseIdentity();
             app.UseMvcWithDefaultRoute();
-            SeedData.EnsurePopulated(app);
+            SeedData.EnsurePopulated(app).Wait();
             
         }
     }

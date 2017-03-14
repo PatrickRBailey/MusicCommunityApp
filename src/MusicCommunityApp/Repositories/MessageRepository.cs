@@ -18,20 +18,17 @@ namespace MusicCommunityApp.Repositories
 
         public IQueryable<Message> GetAllMessages()
         {
+            // Include Musician might be missing
             return context.Messages.Include(m => m.From).Include(m => m.Comments);
         }
 
-        public IEnumerable<Message> GetMessagesForMember(Musician musician)
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<Message> GetMessagesForMember(Member member)
         {
             var filteredMessages = new List<Message>();
             foreach (Message m in context.Messages)
             {
-              if (m.From.MemberID == member.MemberID)
+              if (m.From.MusicianID == member.MemberID)
               {
                 filteredMessages.Add(m);
               }
