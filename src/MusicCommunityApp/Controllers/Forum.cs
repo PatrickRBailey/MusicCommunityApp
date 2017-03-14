@@ -4,6 +4,7 @@ using MusicCommunityApp.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MusicCommunityApp.Controllers
 {
@@ -15,7 +16,7 @@ namespace MusicCommunityApp.Controllers
         {
             repository = repo;
         }
-
+        [Authorize]
         public ViewResult Index()
         {
             return View(repository.GetAllMessages().ToList());
@@ -43,12 +44,14 @@ namespace MusicCommunityApp.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ViewResult NewMessageForm()
         {
             
             return View();
         }
         [HttpPost]
+        [Authorize]
         public IActionResult NewMessageForm(int id, string subject, string body, string eventName)
         {
             if (ModelState.IsValid)
