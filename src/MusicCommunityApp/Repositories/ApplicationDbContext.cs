@@ -22,8 +22,6 @@ namespace MusicCommunityApp.Repositories
             modelBuilder.Ignore<IdentityUser<string>>();
         }
 
-        //TODO: Look at Brians code for OnModelCreating
-        //TODO: Use Brians Branch ReviewByReader as a guide
         //TODO: Use Brian's Branch Authorization to see how to add roles
     }
 }

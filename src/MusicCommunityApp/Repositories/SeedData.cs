@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using MusicCommunityApp.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MusicCommunityApp.Repositories{
     public static class SeedData
@@ -18,9 +19,11 @@ namespace MusicCommunityApp.Repositories{
             string username = firstName + lastName;
             string email = "jsnow@thewall.org";
             string password = "king";
+            string role = "Member";
 
             UserManager<Musician> userManager = app.ApplicationServices.GetRequiredService<UserManager<Musician>>();
-               
+            RoleManager<IdentityRole> roleManager = app.ApplicationServices.GetRequiredService<RoleManager<IdentityRole>>();   
+
             if (!context.Messages.Any())
             {
                 Musician user = await userManager.FindByNameAsync(username);
@@ -28,6 +31,15 @@ namespace MusicCommunityApp.Repositories{
                 {
                     user = new Musician { FirstName = firstName, LastName = lastName, UserName = username, Email = email };
                     IdentityResult result = await userManager.CreateAsync(user, password);
+
+                    if (await roleManager.FindByNameAsync(role) == null)
+                    {
+                        await roleManager.CreateAsync(new IdentityRole(role));
+                        if (result.Succeeded)
+                        {
+                            await userManager.AddToRoleAsync(user, role);
+                        }
+                    }
                 }
 
                 Member member = new Member {FirstName="Johnny", LastName="Rocket"};

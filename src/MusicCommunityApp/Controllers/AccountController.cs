@@ -40,7 +40,10 @@ namespace MusicCommunityApp.Controllers
 
                 if(result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    await userManager.AddToRoleAsync(user, "Member");
+                    if (result.Succeeded)
+
+                        return RedirectToAction("Index", "Home");
                 }
                 else
                 {

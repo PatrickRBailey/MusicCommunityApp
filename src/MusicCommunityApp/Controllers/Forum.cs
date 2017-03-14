@@ -49,7 +49,7 @@ namespace MusicCommunityApp.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles ="Member")]
         public ViewResult NewMessageForm()
         {
             var message = new Models.Message();
