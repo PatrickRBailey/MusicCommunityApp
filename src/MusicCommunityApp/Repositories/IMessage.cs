@@ -8,7 +8,7 @@ namespace MusicCommunityApp.Repositories
 {
     public interface IMessage
     {
-        IEnumerable<Message> GetMessagesForMember(Member member);
+        IEnumerable<Message> GetMessagesForMember(Musician musician);
         IQueryable<Message> GetAllMessages();
         int Update(Message message);
 

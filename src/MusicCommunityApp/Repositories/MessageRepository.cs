@@ -21,6 +21,11 @@ namespace MusicCommunityApp.Repositories
             return context.Messages.Include(m => m.From).Include(m => m.Comments);
         }
 
+        public IEnumerable<Message> GetMessagesForMember(Musician musician)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Message> GetMessagesForMember(Member member)
         {
             var filteredMessages = new List<Message>();

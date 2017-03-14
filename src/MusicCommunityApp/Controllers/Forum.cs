@@ -5,16 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
 
 namespace MusicCommunityApp.Controllers
 {
     public class ForumController : Controller
     {
         private IMessage repository;
+        private UserManager<Musician> userManager;
         
-        public ForumController(IMessage repo)
+        public ForumController(IMessage repo, UserManager<Musician>userMgr)
         {
             repository = repo;
+            userManager = userMgr;
+            
         }
         [Authorize]
         public ViewResult Index()
@@ -24,10 +29,10 @@ namespace MusicCommunityApp.Controllers
 
         public ViewResult AllMessages()
         {
-            return View(repository.GetAllMessages().ToList());
+                return View(repository.GetAllMessages().ToList());
         }
 
-        public ViewResult MyMessages(Member me)
+        public ViewResult MyMessages(Musician me)
         {
             return View(repository.GetMessagesForMember(me));
         }
@@ -52,18 +57,19 @@ namespace MusicCommunityApp.Controllers
         }
         [HttpPost]
         [Authorize]
-        public IActionResult NewMessageForm(int id, string subject, string body, string eventName)
+        public async Task<IActionResult> NewMessageForm(int id, string subject, string body, string eventName)
         {
             if (ModelState.IsValid)
             {
-                var member = new Member { FirstName = "Jack", LastName = "Johnson" };
                 var message = new Message();
                 message.MessageID = id;
                 message.Subject = subject;
                 message.Body = body;
                 message.Date = DateTime.Now;
                 message.EventName = eventName;
-                message.From = member;
+
+                string name = HttpContext.User.Identity.Name;
+                //message.From = await userManager.FindByNameAsync(name);
                 repository.Update(message);
 
                 return RedirectToAction("AllMessages", "Forum");

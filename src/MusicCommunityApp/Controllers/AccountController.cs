@@ -7,49 +7,84 @@ using MusicCommunityApp.Models;
 
 namespace MusicCommunityApp.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
-        private UserManager<IdentityUser> userManager;
-        private SignInManager<IdentityUser> signInManager;
+        private UserManager<Musician> userManager;
+        private SignInManager<Musician> signInManager;
 
-        public AccountController(UserManager<IdentityUser>userMgr,
-            SignInManager<IdentityUser> signInMgr)
+        public AccountController(UserManager<Musician>userMgr,
+            SignInManager<Musician> signInMgr)
         {
             userManager = userMgr;
             signInManager = signInMgr;
         }
 
-        [AllowAnonymous]
-        public ViewResult Login(string returnUrl)
+        public IActionResult Register()
         {
-            return View(new LoginModel
+            return View(new RegisterViewModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult>Register(RegisterViewModel vm)
+        {
+            if (ModelState.IsValid)
             {
-                ReturnUrl = returnUrl
-            });
+                Musician user = new Musician
+                {
+                    UserName = vm.FirstName + vm.LastName,
+                    FirstName = vm.FirstName,
+                    LastName = vm.LastName,
+                    Email = vm.Email
+                };
+                IdentityResult result = await userManager.CreateAsync(user, vm.Password);
+
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach (IdentityError error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+            return View(vm);
+        }
+
+        [AllowAnonymous]
+        public ViewResult Login()
+        {
+            return View(new LoginModel());
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginModel loginModel)
+        public async Task<IActionResult> Login(LoginModel vm)
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user =
-                    await userManager.FindByNameAsync(loginModel.Name);
+                Musician user =
+                    await userManager.FindByNameAsync(vm.UserName);
                 if (user != null)
                 {
                     await signInManager.SignOutAsync();
-                    if ((await signInManager.PasswordSignInAsync(user,
-                            loginModel.Password, false, false)).Succeeded)
+
+                    Microsoft.AspNetCore.Identity.SignInResult result =
+                        await signInManager.PasswordSignInAsync(
+                            user, vm.Password, false, false);
+                    if (result.Succeeded)
                     {
-                        return Redirect(loginModel?.ReturnUrl ?? "/Index");
+                        return RedirectToAction("Index", "Home");
                     }
+
                 }
+                ModelState.AddModelError("", "Invalid name or password");
             }
-            ModelState.AddModelError("", "Invalid name or password");
-            return View(loginModel);
+            
+            return View(vm);
         }
 
         public async Task<RedirectResult> Logout(string returnUrl = "/")

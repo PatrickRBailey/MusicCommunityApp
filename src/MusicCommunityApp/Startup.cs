@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using MusicCommunityApp.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using MusicCommunityApp.Models;
 
 namespace MusicCommunityApp
 {
@@ -39,7 +40,7 @@ namespace MusicCommunityApp
             services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(
                 Configuration["Data:MusicIdentity:ConnectionString"]));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<Musician, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
             // Add framework services.
             services.AddMvc();
@@ -61,7 +62,7 @@ namespace MusicCommunityApp
             app.UseIdentity();
             app.UseMvcWithDefaultRoute();
             SeedData.EnsurePopulated(app);
-            IdentitySeedData.EnsurePopulated(app);
+            
         }
     }
 }

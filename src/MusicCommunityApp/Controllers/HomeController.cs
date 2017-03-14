@@ -2,10 +2,10 @@
 using System;
 using MusicCommunityApp.Repositories;
 using Microsoft.AspNetCore.Authorization;
+using MusicCommunityApp.Models;
 
 namespace MusicCommunityApp.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private IMember repository;
@@ -17,7 +17,13 @@ namespace MusicCommunityApp.Controllers
         public ViewResult Index()
         {
             ViewBag.Date = DateTime.Now.ToString("MM/dd/yyyy");
-            return View();
+            var musicianVm = new MusicianViewModel { Authenticated = false };
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                musicianVm.FirstName = HttpContext.User.Identity.Name;
+                musicianVm.Authenticated = true;
+            }
+            return View(musicianVm);
         }
 
         public ViewResult About()
