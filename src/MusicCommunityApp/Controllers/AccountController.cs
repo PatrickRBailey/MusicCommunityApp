@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using MusicCommunityApp.Models;
+using MusicCommunityApp.Repositories;
+using System.Linq;
 
 namespace MusicCommunityApp.Controllers
 {
@@ -11,13 +13,59 @@ namespace MusicCommunityApp.Controllers
     {
         private UserManager<Musician> userManager;
         private SignInManager<Musician> signInManager;
+        private AppIdentityDbContext context;
 
         public AccountController(UserManager<Musician>userMgr,
-            SignInManager<Musician> signInMgr)
+            SignInManager<Musician> signInMgr, AppIdentityDbContext ctx)
         {
             userManager = userMgr;
             signInManager = signInMgr;
+            context = ctx;
         }
+
+        [Authorize(Roles ="Admin")]
+        public IActionResult AdminRegister()
+        {
+            var vm = new RegisterViewModel();
+            ViewBag.roles = context.Roles.ToList();
+
+            return View(vm);
+        }
+
+        [HttpPost]
+       [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AdminRegister(RegisterViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                Musician user = new Musician
+                {
+                    UserName = vm.FirstName + vm.LastName,
+                    FirstName = vm.FirstName,
+                    LastName = vm.LastName,
+                    Email = vm.Email
+                };
+                IdentityResult result = await userManager.CreateAsync(user, vm.Password);
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, vm.UserRole);
+                    if (result.Succeeded)
+
+                        return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach (IdentityError error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+            return View(vm);
+        }
+
+
 
         public IActionResult Register()
         {

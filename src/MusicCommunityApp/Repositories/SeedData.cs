@@ -35,6 +35,7 @@ namespace MusicCommunityApp.Repositories{
                     if (await roleManager.FindByNameAsync(role) == null)
                     {
                         await roleManager.CreateAsync(new IdentityRole(role));
+                        await roleManager.CreateAsync(new IdentityRole("Admin"));
                         if (result.Succeeded)
                         {
                             await userManager.AddToRoleAsync(user, role);
