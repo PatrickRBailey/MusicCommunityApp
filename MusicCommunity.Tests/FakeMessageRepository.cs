@@ -15,11 +15,11 @@ namespace MusicCommunity.Tests
         public IEnumerable<Message> GetAllMessages()
         {
             var messages = new List<Message>();
-            messages.Add(new Message() {Subject = "Hey", Body = "How are you doing today?", From = user1, Date= DateTime.Now, EventName="Check this out"});
-            messages.Add(new Message() {Subject = "Test", Body = "Yo Yo Yo", From = user1, Date= new DateTime(2017,1,23,5,30,00),EventName="A new EventName"});
-            messages.Add(new Message() {Subject = "Foo", Body = "What's Happening?", From = user2, Date= new DateTime(2017,2,23,2,20,00),EventName="A second EventName"});
-            messages.Add(new Message() {Subject = "Bar", Body = "Oh Hey!!", From = user2,Date= new DateTime(2017,5,13,5,30,00),EventName="Another Event"});
-            messages.Add(new Message() {Subject = "Hey Again", Body = "This is just a test", From= user1, Date= new DateTime(2017,3,5,12,30,00),EventName="A final Event"});
+            //messages.Add(new Message() {Subject = "Hey", Body = "How are you doing today?", From = user1, Date= DateTime.Now, EventName="Check this out"});
+           // messages.Add(new Message() {Subject = "Test", Body = "Yo Yo Yo", From = user1, Date= new DateTime(2017,1,23,5,30,00),EventName="A new EventName"});
+            //messages.Add(new Message() {Subject = "Foo", Body = "What's Happening?", From = user2, Date= new DateTime(2017,2,23,2,20,00),EventName="A second EventName"});
+            //messages.Add(new Message() {Subject = "Bar", Body = "Oh Hey!!", From = user2,Date= new DateTime(2017,5,13,5,30,00),EventName="Another Event"});
+           // messages.Add(new Message() {Subject = "Hey Again", Body = "This is just a test", From= user1, Date= new DateTime(2017,3,5,12,30,00),EventName="A final Event"});
             return messages;
         }
 
@@ -31,11 +31,11 @@ namespace MusicCommunity.Tests
         public IEnumerable<Message> GetMessagesForMember(Member member)
         {
             var messages = new List<Message>();
-            messages.Add(new Message() {Subject = "Hey", Body = "How are you doing today?", From = user1, Date= DateTime.Now, EventName="Check this out"});
-            messages.Add(new Message() {Subject = "Test", Body = "Yo Yo Yo", From = user1, Date= new DateTime(2017,1,23,5,30,00),EventName="A new Event"});
-            messages.Add(new Message() {Subject = "Foo", Body = "What's Happening?", From = user2, Date= new DateTime(2017,2,23,2,20,00),EventName="A second Event"});
-            messages.Add(new Message() {Subject = "Bar", Body = "Oh Hey!!", From = user2,Date= new DateTime(2017,5,13,5,30,00),EventName="Another Event"});
-            messages.Add(new Message() {Subject = "Hey Again", Body = "This is just a test", From= user1, Date= new DateTime(2017,3,5,12,30,00),EventName="A final Event"});
+          //  messages.Add(new Message() {Subject = "Hey", Body = "How are you doing today?", From = user1, Date= DateTime.Now, EventName="Check this out"});
+           // messages.Add(new Message() {Subject = "Test", Body = "Yo Yo Yo", From = user1, Date= new DateTime(2017,1,23,5,30,00),EventName="A new Event"});
+           // messages.Add(new Message() {Subject = "Foo", Body = "What's Happening?", From = user2, Date= new DateTime(2017,2,23,2,20,00),EventName="A second Event"});
+           // messages.Add(new Message() {Subject = "Bar", Body = "Oh Hey!!", From = user2,Date= new DateTime(2017,5,13,5,30,00),EventName="Another Event"});
+           // messages.Add(new Message() {Subject = "Hey Again", Body = "This is just a test", From= user1, Date= new DateTime(2017,3,5,12,30,00),EventName="A final Event"});
 
             var filteredMessages = new List<Message>();
             foreach (Message m in messages)
