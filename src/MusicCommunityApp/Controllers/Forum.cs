@@ -21,7 +21,7 @@ namespace MusicCommunityApp.Controllers
             userManager = userMgr;
             
         }
-        [Authorize]
+
         public ViewResult Index()
         {
             return View(repository.GetAllMessages().ToList());
@@ -49,7 +49,7 @@ namespace MusicCommunityApp.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles ="Member")]
+        [Authorize(Roles ="Member, Admin")]
         public ViewResult NewMessageForm()
         {
             var message = new Models.Message();

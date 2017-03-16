@@ -40,10 +40,13 @@ namespace MusicCommunityApp
             services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(
                 Configuration["Data:MusicIdentity:ConnectionString"]));
 
-            services.AddIdentity<Musician, IdentityRole>()
+            services.AddIdentity<Musician, IdentityRole>(options =>
+               { options.Cookies.ApplicationCookie.LoginPath = "/Account/Login"; })
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
             // Add framework services.
             services.AddMvc();
+
+
 
             services.AddTransient<IMessage, MessageRepository>();
             services.AddTransient<IMember, MemberRepository>();
